@@ -1,0 +1,61 @@
+.boxProducts {
+  width: 100%;
+  padding: 16px;
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+.boxTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  @media (min-width: 768px) {
+    justify-content: start;
+  }
+}
+
+.boxName {
+  font-size: 1.3rem;
+}
+
+.boxInfos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    width: 45%;
+  }
+}
+
+.boxImage {
+  object-fit: cover;
+}
+
+.boxDescription {
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  color: #0000009b;
+  text-align: center;
+}
+
+.buttonBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.metaCall {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    width: 45%;
+  }
+}

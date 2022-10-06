@@ -1,0 +1,55 @@
+.mainCartItems {
+  width: 100%;
+  position: relative;
+  top: 11vh;
+}
+
+.sectionCartItems {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cartItemContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
+.itemImage {
+  width: 64px;
+  height: 92px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 80%;
+  background-color: #c1c1c1;
+  padding: 8px;
+}
+
+.itemNameIcon {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.emptyCart {
+  width: 100%;
+  min-height: 79vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emptyCartMsg {
+  font-size: 1.5rem;
+}
