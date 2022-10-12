@@ -1,13 +1,31 @@
 .mainCartItems {
   width: 100%;
+  height: 70vh;
   position: relative;
   top: 11vh;
+}
+
+.cartFullItems {
+  @media (min-width: 768px) {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .sectionCartItems {
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media (min-width: 768px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .cartItemContainer {
@@ -16,6 +34,9 @@
   align-items: center;
   gap: 8px;
   padding: 8px;
+  @media (min-width: 768px) {
+    width: 70%;
+  }
 }
 
 .itemImage {
@@ -52,4 +73,8 @@
 
 .emptyCartMsg {
   font-size: 1.5rem;
+}
+
+.boxBuyInfo {
+  width: 50%;
 }
