@@ -7,10 +7,20 @@
 
 .cartFullItems {
   @media (min-width: 768px) {
-    width: 70%;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    padding: 10%;
+  }
+}
+
+.cartCard {
+  overflow-x: auto;
+  height: 70vh;
+
+  @media (min-width: 768px) {
+    width: 60%;
   }
 }
 
@@ -34,9 +44,6 @@
   align-items: center;
   gap: 8px;
   padding: 8px;
-  @media (min-width: 768px) {
-    width: 70%;
-  }
 }
 
 .itemImage {
@@ -56,9 +63,20 @@
 }
 
 .itemNameIcon {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+}
+
+.itemName {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.BsTrashFill,
+.decrementQuantity {
+  cursor: pointer;
 }
 
 .emptyCart {
@@ -76,5 +94,65 @@
 }
 
 .boxBuyInfo {
-  width: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    height: 50vh;
+    justify-content: space-between;
+  }
+}
+
+.boxBuyCep {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.boxBuyTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.boxBuySubtitle {
+  color: #1e1e1e;
+  font-size: 0.8rem;
+}
+
+.inputButtonCep {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cepInput {
+  background-color: #c1c1c1;
+  padding: 8px;
+}
+
+.totalItemsInfo {
+  width: 100%;
+  padding: 16px;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subtotalText,
+.totalShippingText,
+.total {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.buyInfos {
+  display: flex;
+  justify-content: space-between;
 }

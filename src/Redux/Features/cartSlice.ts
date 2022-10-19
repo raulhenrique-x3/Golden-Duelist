@@ -7,7 +7,7 @@ interface ICart {
 
 const initialState = {
   cartItems: [],
-  cartTotalQuantity: 0,
+  cartQuantity: 0,
   cartTotalAmount: 0,
 } as ICart;
 
@@ -25,6 +25,15 @@ const cartSlice = createSlice({
       }
     },
 
+    decrementQuantity: (state, action) => {
+      const item = state.cartItems.find((item) => item.id === action.payload);
+      if (item?.cartQuantity === 1) {
+        state.cartItems.filter((item) => (item.cartQuantity = 1));
+      } else {
+        state.cartItems.filter((item) => item.cartQuantity--);
+      }
+    },
+
     removeFromCart(state, action) {
       const removeFromCart = state.cartItems.filter((item) => item.id !== action.payload);
       state.cartItems = removeFromCart;
@@ -32,5 +41,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, decrementQuantity } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

@@ -1,7 +1,7 @@
 import { BsSearch, BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
 import styles from "../Header/header.module.scss";
-import { navItems } from "../../const/navItems";
 import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export const HeaderMenu = () => {
   return (
@@ -14,12 +14,26 @@ export const HeaderMenu = () => {
       </div>
 
       <ul className={styles.navList}>
-        {navItems.map((item, i) => (
-          <li key={i} className={styles.navLi}>
-            {item}
+        <li className={styles.navLi}>
+          <Link to={"/"}>
+            Home
             <IoIosArrowForward className={styles.IoIoArrow} />
-          </li>
-        ))}
+          </Link>
+        </li>
+        <li className={styles.navLi}>
+          Favoritos
+          <IoIosArrowForward className={styles.IoIoArrow} />
+        </li>
+        <li className={styles.navLi}>
+          <Link to={"/cardSearch"}>
+            Card Search
+            <IoIosArrowForward className={styles.IoIoArrow} />
+          </Link>
+        </li>
+        <li className={styles.navLi}>
+          Metacall
+          <IoIosArrowForward className={styles.IoIoArrow} />
+        </li>
       </ul>
       <div className={styles.socialMedia}>
         <BsFacebook className={styles.bsIcon} />

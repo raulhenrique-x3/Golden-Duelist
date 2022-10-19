@@ -1,0 +1,13 @@
+.cardSearchMain {
+  width: 100%;
+  position: relative;
+  top: 11vh;
+}
+
+.cardsContainer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}

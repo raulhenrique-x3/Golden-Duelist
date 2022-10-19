@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { STAPLES_API_URL } from "../../const/url";
+import { STAPLES_API_URL, API_URL } from "../../const/url";
 
 export const staplesApi = createApi({
   reducerPath: "staplesApi",
@@ -10,4 +10,15 @@ export const staplesApi = createApi({
     }),
   }),
 });
+
+export const allCardsApi = createApi({
+  reducerPath: "allCardsApi",
+  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  endpoints: (builder) => ({
+    getAllCards: builder.query({
+      query: () => "",
+    }),
+  }),
+});
 export const { useGetAllStaplesQuery } = staplesApi;
+export const { useGetAllCardsQuery } = allCardsApi;
