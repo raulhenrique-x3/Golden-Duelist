@@ -24,6 +24,12 @@
   }
 }
 
+.myCart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .sectionCartItems {
   display: flex;
   flex-direction: column;
@@ -74,9 +80,45 @@
   font-weight: 600;
 }
 
+.cartIcons {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 32px;
+}
+
+.quantityItems {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.itemQnt {
+  background-color: #eeeeee;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  border-radius: 2px;
+}
+
 .BsTrashFill,
-.decrementQuantity {
+.decrementQuantity,
+.incrementQuantity {
   cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.decrementQuantity {
+  background-color: #fc8181;
+  color: #3d3d3d;
+  border-radius: 2px;
+  padding: 2px;
+}
+.incrementQuantity {
+  background-color: #65e495;
+  color: #3d3d3d;
+  border-radius: 2px;
+  padding: 2px;
 }
 
 .emptyCart {

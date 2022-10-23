@@ -1,8 +1,8 @@
 import styles from "./cart.module.scss";
 import { RootState } from "../../Redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { BsTrashFill, BsFillCartDashFill } from "react-icons/bs";
-import { decrementQuantity, removeFromCart } from "../../Redux/Features/cartSlice";
+import { BsTrashFill, BsFillCartDashFill, BsFillCartPlusFill } from "react-icons/bs";
+import { decrementQuantity, removeFromCart, clearCart, incrementQuantity } from "../../Redux/Features/cartSlice";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -12,10 +12,15 @@ export const CartItem = () => {
   const dispatch = useDispatch();
 
   function handleRemoveFromCart(cart: RootState) {
-    console.log(dispatch(removeFromCart(cart)));
+    dispatch(removeFromCart(cart));
   }
+
+  function handleIncrement(cart: RootState) {
+    dispatch(incrementQuantity(cart));
+  }
+
   function handleDecrement(cart: RootState) {
-    console.log(dispatch(decrementQuantity(cart)));
+    dispatch(decrementQuantity(cart));
   }
 
   const navigate = useNavigate();
@@ -42,21 +47,40 @@ export const CartItem = () => {
     return (
       <div className={styles.cartFullItems}>
         <div className={styles.cartCard}>
-          <p>Meu carrinho:</p>
+          <span className={styles.myCart}>
+            <p>Meu carrinho:</p>
+            <Button
+              size={"sm"}
+              colorScheme="red"
+              variant="outline"
+              onClick={() => dispatch(clearCart(cart.cartItems.find((item) => item.id)))}
+            >
+              CLEAR CART
+            </Button>
+          </span>
           {cart.cartItems.map((item) => (
             <div className={styles.cartItemContainer} key={item.id}>
-              <img src={item?.card_images[0].image_url} alt={item?.name} className={styles.itemImage} />
+              <img src={item?.card_images[0]?.image_url} alt={item?.name} className={styles.itemImage} />
               <div className={styles.itemInfo}>
                 <span className={styles.itemNameIcon}>
                   <p className={styles.itemName}>{item?.name}</p>
-                  <BsTrashFill className={styles.BsTrashFill} onClick={() => handleRemoveFromCart(item.id)} />
-                  <BsFillCartDashFill className={styles.decrementQuantity} onClick={() => handleDecrement(item.id)} />
+                  <div className={styles.cartIcons}>
+                    <button>
+                      <BsTrashFill className={styles.BsTrashFill} onClick={() => handleRemoveFromCart(item.id)} />
+                    </button>
+                  </div>
                 </span>
 
                 <p className={styles.itemValue}>
                   Subtotal: ${item.cartQuantity * item.card_prices[0].cardmarket_price}
                 </p>
-                <p className={styles.itemQnt}>Qnt: {item?.cartQuantity}</p>
+                <span className={styles.quantityItems}>
+                  <button>
+                    <BsFillCartDashFill className={styles.decrementQuantity} onClick={() => handleDecrement(item.id)} />
+                  </button>
+                  <p className={styles.itemQnt}>{item?.cartQuantity}</p>
+                  <BsFillCartPlusFill className={styles.incrementQuantity} onClick={() => handleIncrement(item.id)} />
+                </span>
               </div>
             </div>
           ))}
