@@ -1,16 +1,37 @@
+import { useState } from "react";
 import { BsSearch, BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
-import styles from "../Header/header.module.scss";
 import { IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "../Header/header.module.scss";
 
 export const HeaderMenu = () => {
+  const [searchCard, setSearchCard] = useState("");
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: any) {
+    e.preventDefault();
+    if (!searchCard) {
+      return;
+    }
+    navigate(`/${searchCard}`);
+    setSearchCard("");
+  }
+  console.log(searchCard);
   return (
     <>
       <div className={styles.searchBar}>
-        <span className={styles.inputSearchIcon}>
-          <input type={"search"} className={styles.inputSearch} placeholder={"Pesquisar..."} />
-          <BsSearch />
-        </span>
+        <form className={styles.inputSearchIcon} onSubmit={handleSubmit}>
+          <input
+            type={"submit"}
+            className={styles.inputSearch}
+            placeholder={"Pesquisar..."}
+            onChange={(e) => setSearchCard(e.target.value)}
+            value={searchCard}
+          />
+          <button type="submit" className={styles.BsSearch}>
+            <BsSearch onClick={handleSubmit} />
+          </button>
+        </form>
       </div>
 
       <ul className={styles.navList}>

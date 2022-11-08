@@ -1,7 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import styles from "./carousel.module.scss";
-import "../Products/products.module.scss";
-import { Products } from "../Products/Products";
+import { Products } from "../../Pages/MainPage/MainPage";
 
 export const Section01 = () => {
   return (

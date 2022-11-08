@@ -1,15 +1,29 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { CardProducts } from "../../Components/CardProducts/CardProducts";
 import { ICard } from "../../Interfaces/interfaces";
-import { useGetAllCardsQuery } from "../../Redux/Features/productsAPI";
 import styles from "./cardSearch.module.scss";
+import { API_URL } from "../../const/url";
+import axios from "axios";
 
 export const CardSearch = () => {
-  const { data } = useGetAllCardsQuery([]);
+  const [searchedCard, setSearchedCard] = useState([]);
+  let { cardName } = useParams();
+  useEffect(() => {
+    axios
+      .get(API_URL + `?&fname=${cardName}`)
+      .then((response) => {
+        setSearchedCard(response.data.data);
+        console.log(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, [cardName]);
+  console.log(cardName);
   return (
     <main className={styles.cardSearchMain}>
       <div className={styles.cardsContainer}>
-        {data?.data.slice(0, 24).map((card: ICard) => (
-          <CardProducts card={card} key={card.id} />
+        {searchedCard?.map((card: ICard) => (
+          <CardProducts card={card} key={card?.id} />
         ))}
       </div>
     </main>

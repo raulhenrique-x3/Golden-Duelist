@@ -17,7 +17,7 @@ function App() {
             <Route path="/" element={<Section01 />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/loginPage" element={<LoginPage />} />
-            <Route path="/cardSearch" element={<CardSearch />} />
+            <Route path=":cardName" element={<CardSearch />} />
           </Routes>
         </BrowserRouter>
       </div>

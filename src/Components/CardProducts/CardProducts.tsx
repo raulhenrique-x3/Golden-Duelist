@@ -1,10 +1,10 @@
 import { Box, Button, Skeleton } from "@chakra-ui/react";
-import Marquee from "react-fast-marquee";
-import styles from "../Products/products.module.scss";
+import styles from "../../Pages/MainPage/mainPage.module.scss";
 import { useGetAllStaplesQuery } from "../../Redux/Features/productsAPI";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/Features/cartSlice";
 import { ICard } from "../../Interfaces/interfaces";
+import { Link } from "react-router-dom";
 
 interface ICardProducts {
   card: ICard;
@@ -30,9 +30,10 @@ export const CardProducts: React.FC<ICardProducts> = ({ card }) => {
       ) : (
         <>
           <img className={styles.productImage} src={card.card_images[0].image_url} alt={card.name} />
-          <Marquee gradient={false} speed={5} className={styles.productName}>
-            {card?.name}
-          </Marquee>
+          <Link to={card?.name}>
+            <p className={styles.productName}>{card?.name}</p>
+          </Link>
+
           <p className={styles.productPrice}>$ {card.card_prices[0].cardmarket_price}</p>
           <Button colorScheme="green" size="sm" onClick={() => handleAddToCart(card)}>
             Comprar

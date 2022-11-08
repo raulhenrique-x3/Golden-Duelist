@@ -1,15 +1,12 @@
-import { RootState } from "../../Redux/store";
 import { ICard } from "../../Interfaces/interfaces";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
-import styles from "./products.module.scss";
-import { CardProducts } from "../CardProducts/CardProducts";
-import { BoxPOTE } from "../MainBox/BoxPOTE";
-import { useSelector } from "react-redux";
+import { CardProducts } from "../../Components/CardProducts/CardProducts";
+import { BoxPOTE } from "../../Components/MainBox/BoxPOTE";
 import { useGetAllStaplesQuery } from "../../Redux/Features/productsAPI";
+import styles from "./mainPage.module.scss";
 
 export const Products = () => {
-  const cart = useSelector((state: RootState) => state.cart);
-  const { data } = useGetAllStaplesQuery("");
+  const { data: getStaplesData } = useGetAllStaplesQuery("");
 
   return (
     <div className={styles.products}>
@@ -21,7 +18,7 @@ export const Products = () => {
               <BsFillQuestionCircleFill />
             </div>
             <div className={styles.cardProducts}>
-              {data?.data.slice(0, 3).map((card: ICard) => (
+              {getStaplesData?.data.slice(0, 3).map((card: ICard) => (
                 <CardProducts card={card} key={card.id} />
               ))}
             </div>
@@ -32,7 +29,7 @@ export const Products = () => {
               <BsFillQuestionCircleFill />
             </div>
             <div className={styles.cardProducts}>
-              {data?.data.slice(3, 6).map((card: ICard) => (
+              {getStaplesData?.data.slice(3, 6).map((card: ICard) => (
                 <CardProducts card={card} key={card.id} />
               ))}
             </div>

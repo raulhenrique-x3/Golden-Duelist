@@ -6,6 +6,7 @@ import { decrementQuantity, removeFromCart, clearCart, incrementQuantity } from 
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ICard } from "../../Interfaces/interfaces";
 
 export const CartItem = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -28,6 +29,7 @@ export const CartItem = () => {
   const [totalValue, setTotalValue] = useState(0);
   const totalShipping = 10;
   const totalBuyValue = totalShipping + totalValue;
+
   useEffect(() => {
     let initialValue = 0;
     cart.cartItems.map((card) => (initialValue += card.cartQuantity * card.card_prices[0].cardmarket_price));
@@ -72,7 +74,7 @@ export const CartItem = () => {
                 </span>
 
                 <p className={styles.itemValue}>
-                  Subtotal: ${item.cartQuantity * item.card_prices[0].cardmarket_price}
+                  Subtotal: $ {item.cartQuantity * item.card_prices[0].cardmarket_price}
                 </p>
                 <span className={styles.quantityItems}>
                   <button>
@@ -103,7 +105,7 @@ export const CartItem = () => {
             <span className={styles.subtotal}>
               <div className={styles.buyInfos}>
                 <p className={styles.subtotalText}>Subtotal: </p>
-                <p className={styles.subtotalValue}>${totalValue.toFixed(2)}</p>
+                <p className={styles.subtotalValue}>${parseInt(totalValue.toFixed(2))}</p>
               </div>
               <div className={styles.buyInfos}>
                 <p className={styles.totalShippingText}>Frete: </p>
@@ -112,7 +114,7 @@ export const CartItem = () => {
 
               <div className={styles.buyInfos}>
                 <p className={styles.total}>Total: </p>
-                <p className={styles.totalValue}>${totalBuyValue.toFixed(2)}</p>
+                <p className={styles.totalValue}>${parseFloat(totalBuyValue.toFixed(2))}</p>
               </div>
               <Button colorScheme={"green"} size={"lg"} width={"full"}>
                 Finalizar compra
