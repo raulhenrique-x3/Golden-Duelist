@@ -113,6 +113,22 @@
   display: flex;
   flex-direction: column;
   gap: 5%;
+  @media (min-width: 768px) {
+    width: 100%;
+    height: unset;
+    display: flex;
+    align-items: center;
+    gap: 10%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 100%;
+    height: unset;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10%;
+  }
 }
 
 .hiddenMenu {
@@ -150,10 +166,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: #f0f2f9;
+  padding: 16px;
   border-radius: 5px;
-  border-bottom: solid #000000a8 1px;
-  padding: 8px;
-
   @media (min-width: 768px) {
     width: 35vw;
     justify-content: space-between;
@@ -168,6 +183,8 @@
 .inputSearch {
   @media (min-width: 768px) {
     width: 30vw;
+    background-color: #f0f2f9;
+    border-radius: 5px;
   }
 }
 

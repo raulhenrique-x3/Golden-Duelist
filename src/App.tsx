@@ -6,6 +6,7 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { Cart } from "./Pages/Cart/Cart";
 import { LoginPage } from "./Pages/Login/LoginPage";
 import { CardSearch } from "./Pages/CardSearch/CardSearch";
+import { SearchedCard } from "./Pages/SearchedCard/SearchedCard";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
             <Route path="/" element={<Section01 />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/loginPage" element={<LoginPage />} />
-            <Route path=":cardName" element={<CardSearch />} />
+            <Route path="/cardSearch/:cardName" element={<CardSearch />} />
+            <Route path="/searchedCard/:cardName" element={<SearchedCard />} />
           </Routes>
         </BrowserRouter>
       </div>

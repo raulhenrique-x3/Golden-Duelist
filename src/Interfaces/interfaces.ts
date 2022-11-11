@@ -9,7 +9,7 @@ export interface ICard {
   type?: string;
   id?: number | any;
   card_prices?: any;
-  description?: string;
+  desc?: string;
   link_value?: number;
   card_sets?: string;
   image_url?: string;

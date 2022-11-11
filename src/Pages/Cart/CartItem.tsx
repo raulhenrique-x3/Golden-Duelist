@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsTrashFill, BsFillCartDashFill, BsFillCartPlusFill } from "react-icons/bs";
 import { decrementQuantity, removeFromCart, clearCart, incrementQuantity } from "../../Redux/Features/cartSlice";
 import { Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ICard } from "../../Interfaces/interfaces";
 
@@ -65,7 +65,9 @@ export const CartItem = () => {
               <img src={item?.card_images[0]?.image_url} alt={item?.name} className={styles.itemImage} />
               <div className={styles.itemInfo}>
                 <span className={styles.itemNameIcon}>
-                  <p className={styles.itemName}>{item?.name}</p>
+                  <Link to={`/searchedCard/${item?.name}`}>
+                    <p className={styles.itemName}>{item?.name}</p>
+                  </Link>
                   <div className={styles.cartIcons}>
                     <button>
                       <BsTrashFill className={styles.BsTrashFill} onClick={() => handleRemoveFromCart(item.id)} />

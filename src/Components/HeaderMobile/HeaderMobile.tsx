@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { BsSearch, BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import styles from "../Header/header.module.scss";
 
-export const HeaderMenu = () => {
+export const HeaderMobile = () => {
   const [searchCard, setSearchCard] = useState("");
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ export const HeaderMenu = () => {
     if (!searchCard) {
       return;
     }
-    navigate(`/${searchCard}`);
+    navigate(`/cardSearch/${searchCard}`);
     setSearchCard("");
   }
   console.log(searchCard);
@@ -46,7 +46,7 @@ export const HeaderMenu = () => {
           <IoIosArrowForward className={styles.IoIoArrow} />
         </li>
         <li className={styles.navLi}>
-          <Link to={"/cardSearch"}>
+          <Link to={`/cardSearch`}>
             Card Search
             <IoIosArrowForward className={styles.IoIoArrow} />
           </Link>

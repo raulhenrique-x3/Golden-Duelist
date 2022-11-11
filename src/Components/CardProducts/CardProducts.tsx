@@ -30,7 +30,7 @@ export const CardProducts: React.FC<ICardProducts> = ({ card }) => {
       ) : (
         <>
           <img className={styles.productImage} src={card.card_images[0].image_url} alt={card.name} />
-          <Link to={card?.name}>
+          <Link to={`/searchedCard/${card?.name}`}>
             <p className={styles.productName}>{card?.name}</p>
           </Link>
 

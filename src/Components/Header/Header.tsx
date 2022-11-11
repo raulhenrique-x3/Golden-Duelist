@@ -2,9 +2,9 @@ import { BsFillCartFill, BsSearch } from "react-icons/bs";
 import { BiMenu } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
-import { HeaderMenu } from "../HeaderMenu/HeaderMenu";
+import { HeaderMobile } from "../HeaderMobile/HeaderMobile";
 import styles from "./header.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -16,7 +16,7 @@ function Header() {
     if (!searchCard) {
       return;
     }
-    navigate(`/${searchCard}`);
+    navigate(`/cardSearch/${searchCard}`);
     setSearchCard("");
   }
 
@@ -51,7 +51,7 @@ function Header() {
           </button>
           <button className={styles.cartButton}>
             <Link to={"/Cart"}>
-              <BsFillCartFill className={styles.BsFillCart} onClick={() => setShowMenu(!showMenu)} />
+              <BsFillCartFill className={styles.BsFillCart} />
             </Link>
           </button>
           <button className={styles.hamburguerButton} onClick={() => setShowMenu(!showMenu)}>
@@ -61,7 +61,7 @@ function Header() {
       </div>
       <nav className={styles.navContent}>
         <div className={showMenu ? styles.showMenu : styles.hiddenMenu}>
-          <HeaderMenu />
+          <HeaderMobile />
         </div>
       </nav>
     </header>
