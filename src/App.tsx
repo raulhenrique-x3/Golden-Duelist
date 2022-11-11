@@ -19,6 +19,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/loginPage" element={<LoginPage />} />
             <Route path="/cardSearch/:cardName" element={<CardSearch />} />
+            <Route path="/cardSearch" element={<CardSearch />} />
             <Route path="/searchedCard/:cardName" element={<SearchedCard />} />
           </Routes>
         </BrowserRouter>
