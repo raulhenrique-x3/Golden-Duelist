@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CardSearched } from "../../Components/CardSearched/CardSearched";
-import styles from "../../Components/CardSearched/cardSearched.module.scss";
+import styles from "../CardSearch/cardSearch.module.scss";
 import { API_URL, STAPLES_API_URL } from "../../const/url";
 import { ICard } from "../../Interfaces/interfaces";
 
@@ -28,7 +28,7 @@ export const SearchedCard = () => {
     fetchCardData();
   }, []);
   return (
-    <div>
+    <div className={styles.cardSearchMain}>
       {searchedCard.map((card: ICard) => (
         <CardSearched card={card} key={card.id} />
       ))}

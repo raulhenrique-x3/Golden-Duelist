@@ -1,0 +1,36 @@
+.cardsSearcheds {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 8px;
+}
+
+.cardsSearchedsImage {
+  width: 86px;
+  height: 96px;
+  border-radius: 1px;
+  object-fit: cover;
+}
+
+.cardsSearchedsfigCaption {
+  width: 100%;
+}
+
+.cardsSearchedsName {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.cardsSearchedsDesc {
+  display: none;
+}
+
+.cardsSearchedsPrice {
+  font-size: 0.8rem;
+}
+
+.cardsSearchedsButtons {
+  display: flex;
+  gap: 8px;
+}

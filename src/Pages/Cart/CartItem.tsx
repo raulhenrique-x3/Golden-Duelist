@@ -6,7 +6,6 @@ import { decrementQuantity, removeFromCart, clearCart, incrementQuantity } from 
 import { Button } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ICard } from "../../Interfaces/interfaces";
 
 export const CartItem = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -25,14 +24,13 @@ export const CartItem = () => {
   }
 
   const navigate = useNavigate();
-
   const [totalValue, setTotalValue] = useState(0);
   const totalShipping = 10;
   const totalBuyValue = totalShipping + totalValue;
 
   useEffect(() => {
     let initialValue = 0;
-    cart.cartItems.map((card) => (initialValue += card.cartQuantity * card.card_prices[0].cardmarket_price));
+    cart.cartItems.map((card) => (initialValue += card?.cartQuantity * card.card_prices?.[0]?.cardmarket_price));
     setTotalValue(initialValue);
   }, [cart]);
 
@@ -74,10 +72,10 @@ export const CartItem = () => {
                     </button>
                   </div>
                 </span>
-
                 <p className={styles.itemValue}>
-                  Subtotal: $ {item.cartQuantity * item.card_prices[0].cardmarket_price}
+                  Subtotal: $ {(item?.cartQuantity * item?.card_prices?.[0]?.cardmarket_price).toFixed(2)}
                 </p>
+
                 <span className={styles.quantityItems}>
                   <button>
                     <BsFillCartDashFill className={styles.decrementQuantity} onClick={() => handleDecrement(item.id)} />
@@ -107,7 +105,7 @@ export const CartItem = () => {
             <span className={styles.subtotal}>
               <div className={styles.buyInfos}>
                 <p className={styles.subtotalText}>Subtotal: </p>
-                <p className={styles.subtotalValue}>${parseInt(totalValue.toFixed(2))}</p>
+                <p className={styles.subtotalValue}>${parseFloat(totalValue.toFixed(2))}</p>
               </div>
               <div className={styles.buyInfos}>
                 <p className={styles.totalShippingText}>Frete: </p>

@@ -7,7 +7,12 @@
 .cardsContainer {
   display: flex;
   width: 100%;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 16px;
   justify-content: center;
+}
+
+.cardsContainer > div:nth-child(odd) {
+  background-color: #dcdcdc;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
