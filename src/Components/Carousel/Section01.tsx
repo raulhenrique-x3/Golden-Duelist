@@ -12,7 +12,11 @@ export const Section01 = () => {
             Explorer
           </Button>
         </span>
-        <img className={styles.mainImg} src={require("../../Assets/Red-Eyes-Dark-Dragoon.png")} alt="blueEyesDef" />
+        <img
+          className={styles.mainImg}
+          src={require("../../Assets/Red-Eyes-Dark-Dragoon.png")}
+          alt="Tenha tudo o que você precisa para jogar Yu-Gi-Oh!"
+        />
       </div>
       <Products />
     </main>
