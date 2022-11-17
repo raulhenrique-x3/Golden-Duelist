@@ -6,6 +6,7 @@ import { addToCart } from "../../Redux/Features/cartSlice";
 import { ICard } from "../../Interfaces/interfaces";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillHeartFill } from "react-icons/bs";
+import { addToFavorite } from "../../Redux/Features/favoriteSlice";
 
 interface ICardProducts {
   card: ICard;
@@ -16,6 +17,10 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
   const dispatch = useDispatch();
   const handleAddToCart = (card: ICard) => {
     dispatch(addToCart(card));
+  };
+
+  const handleAddToFavorite = (card: ICard) => {
+    dispatch(addToFavorite(card));
   };
 
   return (
@@ -42,7 +47,7 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
               <Button colorScheme="green" size="sm" onClick={() => handleAddToCart(card)}>
                 <BsFillCartFill className={styles.BsFillCart} />
               </Button>
-              <Button colorScheme="red" size="sm" onClick={() => handleAddToCart(card)}>
+              <Button colorScheme="red" size="sm" onClick={() => handleAddToFavorite(card)}>
                 <BsFillHeartFill className={styles.BsFillCart} />
               </Button>
             </div>

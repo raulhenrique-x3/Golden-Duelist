@@ -28,18 +28,29 @@ export const LoginPage = () => {
               <input type={"email"} placeholder="Digite seu email" className={styles.loginInput} />
               <input type={"password"} placeholder="Digite sua senha" className={styles.loginInput} />
               <span className={styles.passwordRecovery}>
-                <Link to={""}>Esqueci minha senha</Link>
+                <Link to={""}>
+                  <p className={styles.forgetPass}>Esqueci minha senha</p>
+                </Link>
               </span>
             </span>
+            <span>
+              <Button colorScheme={"blue"} size={"md"} width={"full"}>
+                Entrar
+              </Button>
+            </span>
 
-            <Button colorScheme={"blue"} size={"md"} width={"full"}>
-              Entrar
-            </Button>
             <p>Ou registre-se com:</p>
             <div className={styles.altLogin}>
-              <BsFacebook className={styles.BsFacebook} />
-              <SiGmail className={styles.SiGmail} />
-              <BsApple className={styles.BsApple} />
+              <div className={styles.icon}>
+                <BsFacebook className={styles.BsFacebook} />
+              </div>
+              <div className={styles.icon}>
+                <SiGmail className={styles.SiGmail} />
+              </div>
+
+              <div className={styles.icon}>
+                <BsApple className={styles.BsApple} />
+              </div>
             </div>
           </div>
         </div>

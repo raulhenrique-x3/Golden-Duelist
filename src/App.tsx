@@ -7,6 +7,7 @@ import { Cart } from "./Pages/Cart/Cart";
 import { LoginPage } from "./Pages/Login/LoginPage";
 import { CardSearch } from "./Pages/CardSearch/CardSearch";
 import { SearchedCard } from "./Pages/SearchedCard/SearchedCard";
+import { Favorite } from "./Pages/Favorite/Favorite";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/cardSearch/:cardName" element={<CardSearch />} />
             <Route path="/cardSearch" element={<CardSearch />} />
             <Route path="/searchedCard/:cardName" element={<SearchedCard />} />
+            <Route path="/favorite" element={<Favorite />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -1,4 +1,4 @@
-import { Box, Button, Skeleton } from "@chakra-ui/react";
+import { Box, Button, Spinner } from "@chakra-ui/react";
 import styles from "../../Pages/MainPage/mainPage.module.scss";
 import { useGetAllStaplesQuery } from "../../Redux/Features/productsAPI";
 import { useDispatch } from "react-redux";
@@ -20,16 +20,20 @@ export const CardProducts: React.FC<ICardProducts> = ({ card }) => {
   return (
     <div className={styles.mostWantedCards} key={card.id}>
       {isLoading ? (
-        <Box>
-          <Skeleton width={100} height={40} />
+        <Box className={styles.box}>
+          <Spinner className={styles.spinner} />
         </Box>
       ) : isError ? (
-        <Box>
-          <Skeleton width={100} height={40} />
+        <Box className={styles.box}>
+          <Spinner color="red.500" className={styles.spinner} />
+          <p className={styles.errorInfo}>Something wrent wrong...</p>
         </Box>
       ) : (
         <>
-          <img className={styles.productImage} src={card.card_images[0].image_url} alt={card.name} />
+          <Link to={`/searchedCard/${card?.name}`}>
+            <img className={styles.productImage} src={card.card_images[0].image_url} alt={card.name} />
+          </Link>
+
           <Link to={`/searchedCard/${card?.name}`}>
             <p className={styles.productName}>{card?.name}</p>
           </Link>

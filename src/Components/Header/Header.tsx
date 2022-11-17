@@ -1,6 +1,5 @@
 import { BsFacebook, BsFillCartFill, BsInstagram, BsSearch, BsYoutube } from "react-icons/bs";
 import { BiMenu } from "react-icons/bi";
-import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import styles from "./header.module.scss";
 import { Link, useNavigate } from "react-router-dom";
@@ -43,8 +42,7 @@ function Header() {
         </form>
         <div className={styles.headerButtons}>
           <button className={styles.userButton}>
-            <Link to={"/loginPage"}>
-              <FaUserCircle className={styles.FaUserCircle} />
+            <Link to={"/loginPage"} onClick={() => setShowMenu(false)}>
               <p className={styles.userActions}>
                 Login
                 <br />
@@ -54,7 +52,7 @@ function Header() {
           </button>
 
           <button className={styles.cartButton}>
-            <Link to={"/Cart"}>
+            <Link to={"/Cart"} onClick={() => setShowMenu(false)}>
               <BsFillCartFill className={styles.BsFillCart} />
             </Link>
           </button>
@@ -88,11 +86,13 @@ function Header() {
                   <IoIosArrowForward className={styles.IoIoArrow} />
                 </li>
               </Link>
+              <Link to={"/favorite"} onClick={() => setShowMenu(!showMenu)}>
+                <li className={styles.navLi}>
+                  Favoritos
+                  <IoIosArrowForward className={styles.IoIoArrow} />
+                </li>
+              </Link>
 
-              <li className={styles.navLi}>
-                Favoritos
-                <IoIosArrowForward className={styles.IoIoArrow} />
-              </li>
               <Link to={`/cardSearch`} onClick={() => setShowMenu(!showMenu)}>
                 <li className={styles.navLi}>
                   Card Search

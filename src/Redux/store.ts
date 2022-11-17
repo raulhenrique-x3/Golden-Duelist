@@ -5,6 +5,7 @@ import { allCardsApi } from "./Features/productsAPI";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import productSlice from "./Features/productSlice";
+import { favoriteReducer } from "./Features/favoriteSlice";
 
 const persistConfig = {
   key: "root",
@@ -23,6 +24,8 @@ export const store = configureStore({
     [allCardsApi.reducerPath]: allCardsApi.reducer,
 
     persistedReducer,
+
+    favorite: favoriteReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

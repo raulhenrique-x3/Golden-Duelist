@@ -90,13 +90,28 @@
 }
 
 .passwordRecovery {
-  text-align: end;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forgetPass {
+  border-bottom: 0.5px solid #000000;
 }
 
 .altLogin {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 5px;
 }
 
 .BsFacebook,
