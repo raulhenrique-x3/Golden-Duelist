@@ -11,7 +11,7 @@ export interface ICard {
   card_prices?: any;
   desc?: string;
   link_value?: number;
-  card_sets?: string;
+  card_sets?: [];
   image_url?: string;
   cartQuantity?: any;
 }

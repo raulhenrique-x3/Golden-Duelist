@@ -30,3 +30,28 @@
   display: flex;
   gap: 8px;
 }
+
+.cardSet,
+.cardPrice {
+  width: 100%;
+  padding: 8px;
+}
+
+.pricesInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.pricesInfo > span {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.pricesInfo > span:nth-child(odd) {
+  background-color: #dcdcdc;
+  border-radius: 5px;
+}

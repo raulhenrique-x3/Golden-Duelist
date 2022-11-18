@@ -21,10 +21,10 @@ export const CardsSearcheds: React.FC<ICardProducts> = ({ card }) => {
   };
 
   return (
-    <div className={styles.mostWantedCards} key={card.id}>
+    <div className={styles.mostWantedCards} key={card?.id}>
       <figure className={styles.cardsSearcheds}>
         <Link to={`/searchedCard/${card?.name}`}>
-          <img className={styles.cardsSearchedsImage} src={card.card_images[0].image_url} alt={card.name} />
+          <img className={styles.cardsSearchedsImage} src={card?.card_images[0]?.image_url} alt={card?.name} />
         </Link>
 
         <figcaption className={styles.cardsSearchedsfigCaption}>
@@ -32,7 +32,7 @@ export const CardsSearcheds: React.FC<ICardProducts> = ({ card }) => {
             <h2 className={styles.cardsSearchedsName}>{card?.name}</h2>
           </Link>
           <p className={styles.cardsSearchedsDesc}>{card?.desc}</p>
-          <p className={styles.cardsSearchedsPrice}>$ {card.card_prices[0].cardmarket_price}</p>
+          <p className={styles.cardsSearchedsPrice}>$ {card?.card_prices[0]?.cardmarket_price}</p>
           <div className={styles.cardsSearchedsButtons}>
             <Button colorScheme="green" size="sm" onClick={() => handleAddToCart(card)}>
               <BsFillCartFill className={styles.BsFillCart} />
