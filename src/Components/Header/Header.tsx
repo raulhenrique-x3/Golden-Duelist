@@ -1,5 +1,6 @@
 import { BsFacebook, BsFillCartFill, BsInstagram, BsSearch, BsYoutube } from "react-icons/bs";
 import { BiMenu } from "react-icons/bi";
+import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import styles from "./header.module.scss";
 import { Link, useNavigate } from "react-router-dom";
@@ -43,11 +44,7 @@ function Header() {
         <div className={styles.headerButtons}>
           <button className={styles.userButton}>
             <Link to={"/loginPage"} onClick={() => setShowMenu(false)}>
-              <p className={styles.userActions}>
-                Login
-                <br />
-                /Register
-              </p>
+              <FaUserCircle className={styles.FaUserCircle} />
             </Link>
           </button>
 
