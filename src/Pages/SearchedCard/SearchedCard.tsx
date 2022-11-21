@@ -5,13 +5,13 @@ import { CardSearched } from "../../Components/CardSearched/CardSearched";
 import styles from "../CardSearch/cardSearch.module.scss";
 import { API_URL } from "../../const/url";
 import { ICard } from "../../Interfaces/interfaces";
+import { Box, Spinner } from "@chakra-ui/react";
 
 export const SearchedCard = () => {
   const [searchedCard, setSearchedCard] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
   let { cardName } = useParams();
-  console.log(cardName);
 
   useEffect(() => {
     async function fetchCardData() {
@@ -20,18 +20,27 @@ export const SearchedCard = () => {
         .then((response) => {
           setSearchedCard(response.data.data);
         })
-        .catch((error) => {
-          console.error(error);
+        .catch(() => {
+          setError(true);
         })
         .finally(() => setLoading(false));
     }
     fetchCardData();
-  }, []);
+  }, [cardName]);
   return (
     <div className={styles.cardSearchMain}>
-      {searchedCard.map((card: ICard) => (
-        <CardSearched card={card} key={card.id} />
-      ))}
+      {isLoading ? (
+        <Box className={styles.box}>
+          <Spinner className={styles.spinner} />
+        </Box>
+      ) : isError ? (
+        <Box className={styles.box}>
+          <Spinner color="red.500" className={styles.spinner} />
+          <p className={styles.errorInfo}>Something wrent wrong...</p>
+        </Box>
+      ) : (
+        searchedCard.map((card: ICard) => <CardSearched card={card} key={card.id} />)
+      )}
     </div>
   );
 };

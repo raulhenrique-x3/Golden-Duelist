@@ -32,7 +32,8 @@
 }
 
 .cardSet,
-.cardPrice {
+.cardPrice,
+.comments {
   width: 100%;
   padding: 8px;
 }
@@ -54,4 +55,36 @@
 .pricesInfo > span:nth-child(odd) {
   background-color: #dcdcdc;
   border-radius: 5px;
+}
+
+.usersComments {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  padding: 8px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.comments > .usersComments:nth-child(odd) {
+  background-color: #dcdcdc;
+}
+
+.userName {
+  font-weight: 600;
+}
+
+.userID,
+.commentDate {
+  color: #505050;
+  font-size: 0.7rem;
+}
+
+.dateHour {
+  display: flex;
+  gap: 8px;
+}
+
+.seeMore {
+  color: #004ba2;
+  font-weight: 600;
 }

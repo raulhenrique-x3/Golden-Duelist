@@ -1,5 +1,20 @@
 import styles from "./cardSearched.module.scss";
-import { Box, Button, Skeleton, Table, Thead, Tbody, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
+import { useState } from "react";
+import {
+  Box,
+  Button,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  Avatar,
+  WrapItem,
+  Wrap,
+  Spinner,
+} from "@chakra-ui/react";
 import { useGetAllStaplesQuery } from "../../Redux/Features/productsAPI";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/Features/cartSlice";
@@ -7,6 +22,7 @@ import { ICard } from "../../Interfaces/interfaces";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillHeartFill } from "react-icons/bs";
 import { addToFavorite } from "../../Redux/Features/favoriteSlice";
+import { userComments } from "../../const/userComments";
 
 interface ICardProducts {
   card: ICard;
@@ -21,6 +37,8 @@ interface ICardProducts {
 }
 
 export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
+  const [loadMoreComments, setLoadMoreComments] = useState(3);
+  const [seeMore, setSeeMore] = useState(true);
   const { isError, isLoading } = useGetAllStaplesQuery([]);
   const dispatch = useDispatch();
   const handleAddToCart = (card: ICard) => {
@@ -35,11 +53,14 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
     <div className={styles.mostWantedCards} key={card?.id}>
       {isLoading ? (
         <Box>
-          <Skeleton width={100} height={40} />
+          <Box className={styles.box}>
+            <Spinner className={styles.spinner} />
+          </Box>
         </Box>
       ) : isError ? (
-        <Box>
-          <Skeleton width={100} height={40} />
+        <Box className={styles.box}>
+          <Spinner color="red.500" className={styles.spinner} />
+          <p className={styles.errorInfo}>Something wrent wrong...</p>
         </Box>
       ) : (
         <>
@@ -96,26 +117,69 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
               <div className={styles.pricesInfo} key={card?.id}>
                 <span>
                   <p>Card Market: </p>
-                  <p>{set?.cardmarket_price}</p>
+                  <p>$ {set?.cardmarket_price}</p>
                 </span>
                 <span>
                   <p>TCG Player: </p>
-                  <p>{set?.tcgplayer_price}</p>
+                  <p>$ {set?.tcgplayer_price}</p>
                 </span>
                 <span>
                   <p>Ebay: </p>
-                  <p>{set?.ebay_price}</p>
+                  <p>$ {set?.ebay_price}</p>
                 </span>
                 <span>
                   <p>Amazon: </p>
-                  <p>{set?.amazon_price}</p>
+                  <p>$ {set?.amazon_price}</p>
                 </span>
                 <span>
                   <p>CoolStuff: </p>
-                  <p>{set?.coolstuffinc_price}</p>
+                  <p>$ {set?.coolstuffinc_price}</p>
                 </span>
               </div>
             ))}
+          </div>
+
+          <div className={styles.comments}>
+            <h2>Comentários: {userComments.length}</h2>
+            {userComments
+              .sort((a, b) => a.userID - b.userID)
+              .map((comment) => (
+                <div key={comment.userID} className={styles.usersComments}>
+                  <Wrap>
+                    <WrapItem display={"flex"} gap={"8px"} alignItems={"center"}>
+                      <Avatar name={comment.userName} />
+                      <div className={styles.userInfos}>
+                        <p className={styles.userName}>{comment.userName}</p>
+                        <p className={styles.userID}>#{comment.userID}</p>
+                        <span className={styles.dateHour}>
+                          <p className={styles.commentDate}>{comment.commentDate}</p>
+                        </span>
+                      </div>
+                    </WrapItem>
+                  </Wrap>
+
+                  <p>
+                    {seeMore ? comment.userComment.slice(0, 150) : comment.userComment}
+                    {comment.userComment.length > 150 ? (
+                      <span className={styles.seeMore} onClick={() => setSeeMore(!seeMore)}>
+                        {seeMore ? " ...ver mais" : " ver menos"}
+                      </span>
+                    ) : (
+                      <></>
+                    )}
+                  </p>
+                </div>
+              ))
+              .slice(0, loadMoreComments)}
+            {loadMoreComments <= userComments.length ? (
+              <Button colorScheme="blue" variant="outline" onClick={() => setLoadMoreComments(loadMoreComments + 2)}>
+                Carregar mais...
+              </Button>
+            ) : (
+              <Button colorScheme="blue" variant="outline" onClick={() => setLoadMoreComments(4)}>
+                Mostra menos...
+              </Button>
+            )}
           </div>
         </>
       )}
