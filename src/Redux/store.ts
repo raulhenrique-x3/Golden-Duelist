@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import productSlice from "./Features/productSlice";
 import { favoriteReducer } from "./Features/favoriteSlice";
+import { commentReducer } from "./Features/commentsSlice";
 
 const persistConfig = {
   key: "root",
@@ -26,6 +27,8 @@ export const store = configureStore({
     persistedReducer,
 
     favorite: favoriteReducer,
+
+    comments: commentReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

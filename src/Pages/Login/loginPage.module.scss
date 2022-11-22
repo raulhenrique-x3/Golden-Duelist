@@ -55,11 +55,12 @@
 
 .loginBox {
   width: 80%;
-  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 12px;
   gap: 8px;
   @media (min-width: 768px) {
     width: 20%;

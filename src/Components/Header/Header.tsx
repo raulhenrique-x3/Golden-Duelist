@@ -12,7 +12,7 @@ function Header() {
   const navigate = useNavigate();
 
   async function handleSubmit(e: any) {
-    e.preventDefault();
+    await e.preventDefault();
     if (!searchCard) {
       return;
     }

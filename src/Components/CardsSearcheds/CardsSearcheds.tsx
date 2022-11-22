@@ -1,11 +1,12 @@
 import styles from "./cardsSearcheds.module.scss";
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Spinner } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/Features/cartSlice";
 import { ICard } from "../../Interfaces/interfaces";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillHeartFill } from "react-icons/bs";
 import { addToFavorite } from "../../Redux/Features/favoriteSlice";
+import { useGetAllStaplesQuery } from "../../Redux/Features/productsAPI";
 
 interface ICardProducts {
   card: ICard;
@@ -13,6 +14,7 @@ interface ICardProducts {
 
 export const CardsSearcheds: React.FC<ICardProducts> = ({ card }) => {
   const dispatch = useDispatch();
+  const { isError, isLoading } = useGetAllStaplesQuery([]);
   const handleAddToCart = (card: ICard) => {
     dispatch(addToCart(card));
   };
@@ -24,7 +26,17 @@ export const CardsSearcheds: React.FC<ICardProducts> = ({ card }) => {
     <div className={styles.mostWantedCards} key={card?.id}>
       <figure className={styles.cardsSearcheds}>
         <Link to={`/searchedCard/${card?.name}`}>
-          <img className={styles.cardsSearchedsImage} src={card?.card_images[0]?.image_url} alt={card?.name} />
+          {isLoading ? (
+            <Box className={styles.box}>
+              <Spinner className={styles.spinner} />
+            </Box>
+          ) : isError ? (
+            <Box className={styles.box}>
+              <Spinner color="red.500" className={styles.spinner} />
+            </Box>
+          ) : (
+            <img className={styles.cardsSearchedsImage} src={card?.card_images[0]?.image_url} alt={card?.name} />
+          )}
         </Link>
 
         <figcaption className={styles.cardsSearchedsfigCaption}>

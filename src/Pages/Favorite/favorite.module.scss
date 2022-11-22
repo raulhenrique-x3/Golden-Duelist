@@ -20,6 +20,11 @@
 }
 
 .favoriteFullItems {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
   @media (min-width: 768px) {
     width: 100%;
     display: flex;
@@ -37,11 +42,11 @@
 }
 
 .favoriteCard {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  width: 30%;
+}
+
+.favoritesCards {
+  width: 30%;
 }
 
 .favoriteItemContainer {
@@ -59,4 +64,14 @@
   height: 92px;
   object-fit: cover;
   object-position: center;
+}
+
+.itemName {
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.favoriteIcons {
+  display: flex;
+  gap: 4px;
 }

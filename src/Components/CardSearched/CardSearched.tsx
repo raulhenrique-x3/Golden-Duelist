@@ -16,13 +16,15 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useGetAllStaplesQuery } from "../../Redux/Features/productsAPI";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../Redux/Features/cartSlice";
 import { ICard } from "../../Interfaces/interfaces";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillHeartFill } from "react-icons/bs";
+import { BiCommentAdd } from "react-icons/bi";
 import { addToFavorite } from "../../Redux/Features/favoriteSlice";
-import { userComments } from "../../const/userComments";
+import { RootState } from "../../Redux/store";
+import { addComment } from "../../Redux/Features/commentsSlice";
 
 interface ICardProducts {
   card: ICard;
@@ -38,9 +40,12 @@ interface ICardProducts {
 
 export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
   const [loadMoreComments, setLoadMoreComments] = useState(3);
+  const [userMakeComment, setUserMakeComment] = useState("");
   const [seeMore, setSeeMore] = useState(true);
   const { isError, isLoading } = useGetAllStaplesQuery([]);
   const dispatch = useDispatch();
+  const comment = useSelector((state: RootState) => state.comments);
+  const likes = useSelector((state: RootState) => state.comments.likeComment);
   const handleAddToCart = (card: ICard) => {
     dispatch(addToCart(card));
   };
@@ -48,6 +53,16 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
   const handleAddToFavorite = (card: ICard) => {
     dispatch(addToFavorite(card));
   };
+
+  async function handleAddComment() {
+    await dispatch(addComment(userMakeComment));
+    setUserMakeComment("");
+  }
+
+  async function handleSubmit(e: any) {
+    await e.preventDefault();
+    setUserMakeComment("");
+  }
 
   return (
     <div className={styles.mostWantedCards} key={card?.id}>
@@ -140,27 +155,26 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
           </div>
 
           <div className={styles.comments}>
-            <h2>Comentários: {userComments.length}</h2>
-            {userComments
-              .sort((a, b) => a.userID - b.userID)
-              .map((comment) => (
-                <div key={comment.userID} className={styles.usersComments}>
+            <h2>Comentários: {comment.comments.length}</h2>
+            {comment.comments
+              .map((comment: any, key: any) => (
+                <div key={key} className={styles.usersComments}>
                   <Wrap>
                     <WrapItem display={"flex"} gap={"8px"} alignItems={"center"}>
                       <Avatar name={comment.userName} />
                       <div className={styles.userInfos}>
-                        <p className={styles.userName}>{comment.userName}</p>
-                        <p className={styles.userID}>#{comment.userID}</p>
+                        <p className={styles.userName}>{comment?.userName}</p>
+                        <p className={styles.userID}>#{comment?.userID}</p>
                         <span className={styles.dateHour}>
-                          <p className={styles.commentDate}>{comment.commentDate}</p>
+                          <p className={styles.commentDate}>{comment?.commentDate}</p>
                         </span>
                       </div>
                     </WrapItem>
                   </Wrap>
 
                   <p>
-                    {seeMore ? comment.userComment.slice(0, 150) : comment.userComment}
-                    {comment.userComment.length > 150 ? (
+                    {seeMore ? comment?.userComment?.slice(0, 150) : comment?.userComment}
+                    {comment?.userComment?.length > 150 ? (
                       <span className={styles.seeMore} onClick={() => setSeeMore(!seeMore)}>
                         {seeMore ? " ...ver mais" : " ver menos"}
                       </span>
@@ -171,15 +185,30 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
                 </div>
               ))
               .slice(0, loadMoreComments)}
-            {loadMoreComments <= userComments.length ? (
-              <Button colorScheme="blue" variant="outline" onClick={() => setLoadMoreComments(loadMoreComments + 2)}>
-                Carregar mais...
-              </Button>
-            ) : (
-              <Button colorScheme="blue" variant="outline" onClick={() => setLoadMoreComments(4)}>
-                Mostra menos...
-              </Button>
-            )}
+            <div className={styles.showMoreButtons}>
+              {loadMoreComments <= comment?.comments?.length ? (
+                <Button colorScheme="blue" variant="outline" onClick={() => setLoadMoreComments(loadMoreComments + 2)}>
+                  Carregar mais...
+                </Button>
+              ) : (
+                <Button colorScheme="blue" variant="outline" onClick={() => setLoadMoreComments(4)}>
+                  Mostra menos...
+                </Button>
+              )}
+            </div>
+
+            <form onSubmit={handleSubmit} className={styles.commentForm}>
+              <input
+                type={"text"}
+                placeholder={"Digite um comentário..."}
+                value={userMakeComment}
+                onChange={(e) => setUserMakeComment(e.target.value)}
+                className={styles.commentInput}
+              ></input>
+              <button type={"submit"} onClick={handleAddComment}>
+                <BiCommentAdd className={styles.BiCommentAdd} />
+              </button>
+            </form>
           </div>
         </>
       )}

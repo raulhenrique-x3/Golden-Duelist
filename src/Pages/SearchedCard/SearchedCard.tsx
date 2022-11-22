@@ -39,7 +39,7 @@ export const SearchedCard = () => {
           <p className={styles.errorInfo}>Something wrent wrong...</p>
         </Box>
       ) : (
-        searchedCard.map((card: ICard) => <CardSearched card={card} key={card.id} />)
+        searchedCard.slice(0, 1).map((card: ICard) => <CardSearched card={card} key={card.id} />)
       )}
     </div>
   );

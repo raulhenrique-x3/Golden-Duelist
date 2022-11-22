@@ -35,7 +35,11 @@ export const CardProducts: React.FC<ICardProducts> = ({ card }) => {
           </Link>
 
           <Link to={`/searchedCard/${card?.name}`}>
-            <p className={styles.productName}>{card?.name}</p>
+            {card?.name.length >= 20 ? (
+              <p className={styles.productName}>{card?.name.slice(0, 12)}...</p>
+            ) : (
+              <p className={styles.productName}>{card?.name}</p>
+            )}
           </Link>
 
           <p className={styles.productPrice}>$ {card.card_prices[0].cardmarket_price}</p>

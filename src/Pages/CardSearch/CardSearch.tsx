@@ -5,14 +5,14 @@ import { API_URL, STAPLES_API_URL } from "../../const/url";
 import axios from "axios";
 import styles from "./cardSearch.module.scss";
 import { CardsSearcheds } from "../../Components/CardsSearcheds/CardsSearcheds";
-import { Box, Spinner } from "@chakra-ui/react";
+import { Box, Button, Spinner } from "@chakra-ui/react";
 
 export const CardSearch = () => {
   const [searchedCard, setSearchedCard] = useState([]);
+  const [loadMoreCards, setLoadMoreCards] = useState(15);
   const [isLoading, setLoading] = useState(true);
   const [isError] = useState(false);
   let { cardName } = useParams();
-  console.log(cardName);
 
   useEffect(() => {
     async function fetchCardData() {
@@ -62,9 +62,18 @@ export const CardSearch = () => {
         </Box>
       ) : (
         <div className={styles.cardsContainer}>
-          {searchedCard?.slice(0, 15).map((card: ICard) => (
+          {searchedCard?.slice(0, loadMoreCards).map((card: ICard) => (
             <CardsSearcheds card={card} key={card?.id} />
           ))}
+          {loadMoreCards <= searchedCard.length ? (
+            <Button colorScheme="blue" variant="solid" onClick={() => setLoadMoreCards(loadMoreCards + 5)}>
+              Carregar mais...
+            </Button>
+          ) : (
+            <Button colorScheme="blue" variant="outline" onClick={() => setLoadMoreCards(15)}>
+              Mostra menos...
+            </Button>
+          )}
         </div>
       )}
     </main>
