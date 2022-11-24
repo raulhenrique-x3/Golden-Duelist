@@ -1,8 +1,40 @@
-.cardFigure {
-  width: 100%;
+@mixin flex-type {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-type-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin pg-8 {
+  padding: 8px;
+  gap: 8px;
+}
+
+@mixin d-flex-g-8 {
+  display: flex;
+  gap: 8px;
+}
+
+@mixin w-100-p-8 {
+  width: 100%;
+  padding: 8px;
+}
+
+@mixin icon {
+  width: 32px;
+  height: 32px;
+}
+
+$box-shadow-main: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+$border-radius-main: 5px;
+
+.cardFigure {
+  @include flex-type;
+  width: 100%;
   flex-direction: column;
   gap: 16px;
 }
@@ -14,36 +46,37 @@
 }
 
 .figCaptionInfos {
-  display: flex;
+  @include flex-type-column;
   align-items: center;
-  flex-direction: column;
   gap: 16px;
   padding: 8px;
 }
 
 .productName {
   font-size: 2rem;
+}
+
+.userName,
+.seeMore,
+.productName {
   font-weight: 600;
 }
 
 .userButtons {
-  display: flex;
-  gap: 8px;
+  @include d-flex-g-8;
 }
 
 .cardSet,
 .cardPrice,
 .comments {
-  width: 100%;
-  padding: 8px;
+  @include w-100-p-8;
 }
 
 .pricesInfo {
-  display: flex;
-  flex-direction: column;
+  @include flex-type-column;
   gap: 8px;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: $border-radius-main;
 }
 
 .pricesInfo > span {
@@ -54,23 +87,17 @@
 
 .pricesInfo > span:nth-child(odd) {
   background-color: #dcdcdc;
-  border-radius: 5px;
+  border-radius: $border-radius-main;
 }
 
 .usersComments {
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
-  padding: 8px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  @include flex-type-column;
+  @include pg-8;
+  box-shadow: $box-shadow-main;
 }
 
 .comments > .usersComments:nth-child(odd) {
   background-color: #dcdcdc;
-}
-
-.userName {
-  font-weight: 600;
 }
 
 .userID,
@@ -80,35 +107,30 @@
 }
 
 .dateHour {
-  display: flex;
-  gap: 8px;
+  @include d-flex-g-8;
 }
 
 .seeMore {
   color: #004ba2;
-  font-weight: 600;
 }
 
 .showMoreButtons {
-  width: 100%;
-  padding: 8px;
+  @include w-100-p-8;
 }
 
 .commentForm {
-  padding: 8px;
   display: flex;
-  gap: 8px;
+  @include pg-8;
 }
 
 .commentInput {
   width: 90%;
   background-color: #f0f2f9;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  box-shadow: $box-shadow-main;
   padding: 16px;
-  border-radius: 5px;
+  border-radius: $border-radius-main;
 }
 
 .BiCommentAdd {
-  width: 32px;
-  height: 32px;
+  @include icon;
 }

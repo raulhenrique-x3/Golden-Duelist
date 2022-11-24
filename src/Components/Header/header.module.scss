@@ -28,6 +28,10 @@
   font-family: "Bebas Neue", cursive;
   letter-spacing: 1px;
   font-size: 1.3rem;
+
+  @media (min-width: 768px) {
+    font-size: clamp(1.3rem, 2vw, 3rem);
+  }
 }
 
 .searchBarPC {
@@ -48,7 +52,7 @@
     gap: 32px;
   }
   @media (min-width: 1444px) {
-    gap: 64px;
+    gap: 48px;
   }
 }
 
@@ -68,6 +72,15 @@
   @media (min-width: 768px) {
     width: 32px;
     height: 32px;
+  }
+  @media (min-width: 1444px) {
+    width: 36px;
+    height: 36px;
+  }
+
+  @media (min-width: 2560px) {
+    width: 46px;
+    height: 46px;
   }
 }
 
@@ -179,6 +192,12 @@
     width: 30vw;
     justify-content: space-between;
   }
+
+  @media (min-width: 2560px) {
+    width: 30vw;
+    padding: 24px;
+    justify-content: space-between;
+  }
 }
 
 .inputSearch {
@@ -189,10 +208,19 @@
     width: 30vw;
     border-radius: 5px;
   }
+
+  @media (min-width: 2560px) {
+    font-size: 1.5rem;
+  }
 }
 
 .BsSearch {
   cursor: pointer;
+
+  @media (min-width: 2560px) {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 .navList {
@@ -224,7 +252,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   @media (min-width: 768px) {
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 1.1vw, 2rem);
     padding: 8px;
     letter-spacing: 0.8px;
   }

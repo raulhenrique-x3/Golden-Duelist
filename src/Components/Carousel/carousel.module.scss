@@ -1,25 +1,36 @@
-.mainSect {
+@mixin column-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin w-100-h-40 {
   width: 100%;
   height: 40vh;
+}
+
+.mainSect {
+  @include w-100-h-40;
   position: relative;
   top: 5.7vh;
+
+  @media (min-width: 768px) {
+    position: unset;
+  }
 }
 .mainImg {
-  width: 100%;
-  height: 40vh;
+  @include w-100-h-40;
   object-fit: cover;
   object-position: 70%;
 }
 
 .mainInfo {
+  @include column-center;
   position: absolute;
   z-index: 1;
   width: 60%;
   height: 40vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   gap: 8px;
   padding: 16px;
 }

@@ -37,7 +37,7 @@ function Header() {
               placeholder={"Pesquisar..."}
             />
             <button className={styles.searchButton} type={"submit"}>
-              <BsSearch onClick={handleSubmit} />
+              <BsSearch onClick={handleSubmit} className={styles.BsSearch} />
             </button>
           </span>
         </form>
