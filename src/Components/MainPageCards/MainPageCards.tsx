@@ -6,11 +6,11 @@ import { addToCart } from "../../Redux/Features/cartSlice";
 import { ICard } from "../../Interfaces/interfaces";
 import { Link } from "react-router-dom";
 
-interface ICardProducts {
+interface IMainPageCards {
   card: ICard;
 }
 
-export const CardProducts: React.FC<ICardProducts> = ({ card }) => {
+export const MainPageCards: React.FC<IMainPageCards> = ({ card }) => {
   const { isError, isLoading } = useGetAllStaplesQuery([]);
   const dispatch = useDispatch();
   const handleAddToCart = (card: ICard) => {
