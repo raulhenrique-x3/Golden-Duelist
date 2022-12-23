@@ -128,15 +128,16 @@
   gap: 5%;
   @media (min-width: 768px) {
     width: 100%;
-    height: unset;
+    height: 100%;
     display: flex;
     align-items: center;
     gap: 10%;
+    position: unset;
   }
 
   @media (min-width: 1024px) {
     width: 100%;
-    height: unset;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -180,7 +181,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #f0f2f9;
+  background-color: #d9d9d9;
   padding: 16px;
   border-radius: 5px;
   @media (min-width: 768px) {
@@ -202,7 +203,7 @@
 
 .inputSearch {
   width: 60vw;
-  background-color: #f0f2f9;
+  background-color: #d9d9d9;
 
   @media (min-width: 768px) {
     width: 30vw;

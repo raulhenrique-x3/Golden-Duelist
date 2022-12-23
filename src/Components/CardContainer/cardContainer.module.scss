@@ -1,0 +1,27 @@
+.cardsContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 1px solid #00000026;
+    padding: 12px;
+  }
+}
+
+.cardsContainer > div:nth-child(odd) {
+  background-color: #dcdcdc;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.cardsContainer > div {
+  @media (min-width: 768px) {
+    background-color: #dcdcdc;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+}

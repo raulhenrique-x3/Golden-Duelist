@@ -28,19 +28,21 @@ export const SearchedCard = () => {
     fetchCardData();
   }, [cardName]);
   return (
-    <div className={styles.cardSearchMain}>
-      {isLoading ? (
-        <Box className={styles.box}>
-          <Spinner className={styles.spinner} />
-        </Box>
-      ) : isError ? (
-        <Box className={styles.box}>
-          <Spinner color="red.500" className={styles.spinner} />
-          <p className={styles.errorInfo}>Something wrent wrong...</p>
-        </Box>
-      ) : (
-        searchedCard.slice(0, 1).map((card: ICard) => <CardSearched card={card} key={card.id} />)
-      )}
-    </div>
+    <section className={styles.searchedCardSection}>
+      <div className={styles.cardSearchMain}>
+        {isLoading ? (
+          <Box className={styles.box}>
+            <Spinner className={styles.spinner} />
+          </Box>
+        ) : isError ? (
+          <Box className={styles.box}>
+            <Spinner color="red.500" className={styles.spinner} />
+            <p className={styles.errorInfo}>Something wrent wrong...</p>
+          </Box>
+        ) : (
+          searchedCard.slice(0, 1).map((card: ICard) => <CardSearched card={card} key={card.id} />)
+        )}
+      </div>
+    </section>
   );
 };

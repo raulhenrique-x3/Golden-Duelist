@@ -14,4 +14,7 @@ export interface ICard {
   card_sets?: [];
   image_url?: string;
   cartQuantity?: any;
+  card?: any;
+  children?: JSX.Element[];
+  alt?: string;
 }

@@ -1,4 +1,4 @@
-.cardsSearcheds {
+.cardBox {
   display: flex;
   align-items: center;
   width: 100%;
@@ -6,7 +6,7 @@
   padding: 8px;
 
   @media (min-width: 768px) {
-    width: 12vw;
+    width: 15vw;
     flex-direction: column;
     background-color: #dcdcdc;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -14,37 +14,20 @@
   }
 }
 
-.cardsSearchedsImage {
+.cardImage {
   width: 86px;
   height: 96px;
   border-radius: 1px;
-  object-fit: cover;
+  object-fit: contain;
 
   @media (min-width: 768px) {
     width: 150px;
     height: 160px;
-    object-fit: contain;
   }
 }
 
-.cardsSearchedsfigCaption {
+.userButtons {
   width: 100%;
-}
-
-.cardsSearchedsName {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.cardsSearchedsDesc {
-  display: none;
-}
-
-.cardsSearchedsPrice {
-  font-size: 0.8rem;
-}
-
-.cardsSearchedsButtons {
   display: flex;
-  gap: 8px;
+  justify-content: space-around;
 }

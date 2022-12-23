@@ -36,7 +36,7 @@
 }
 
 .mainText {
-  font-size: 1rem;
+  font-size: clamp(1rem, 2vw, 2.5rem);
   font-weight: 800;
   color: #fff;
   font-family: "Bebas Neue", cursive;

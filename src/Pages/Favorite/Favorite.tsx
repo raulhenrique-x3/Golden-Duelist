@@ -1,4 +1,4 @@
-import styles from "./favorite.module.scss";
+import styles from "../CardSearch/cardSearch.module.scss";
 import { RootState } from "../../Redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillCartFill, BsFillInfoSquareFill, BsTrashFill } from "react-icons/bs";
@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { clearFavorite, removeFromFavorite } from "../../Redux/Features/favoriteSlice";
 import { ICard } from "../../Interfaces/interfaces";
 import { addToCart } from "../../Redux/Features/cartSlice";
+import { Card } from "../../Components/CardBox/Card";
+import { CardContainer } from "../../Components/CardContainer/CardContainer";
 
 export const Favorite = () => {
   const favorite = useSelector((state: RootState) => state.favorite);
@@ -33,90 +35,37 @@ export const Favorite = () => {
     );
   } else
     return (
-      <main className={styles.mainFavoriteItems}>
-        <section className={styles.sectionFavoriteItems}>
-          <span className={styles.myFavorite}>
-            <p>Meus favoritos:</p>
-            <Button
-              size={"sm"}
-              colorScheme="red"
-              variant="outline"
-              onClick={() => dispatch(clearFavorite(favorite.favoriteItems.find((item) => item.id)))}
-            >
-              Limpar
-            </Button>
-          </span>
-          <div className={styles.favoriteFullItems}>
-            {favorite.favoriteItems.map((item) => (
-              <>
-                {favorite.favoriteItems.length <= 2 ? (
-                  <div className={styles.favoriteCard}>
-                    <div className={styles.favoriteItemContainer} key={item.id}>
-                      <img src={item?.card_images[0]?.image_url} alt={item?.name} className={styles.itemImage} />
-                      <div className={styles.itemInfo}>
-                        <span className={styles.itemNameIcon}>
-                          <Link to={`/searchedCard/${item?.name}`}>
-                            {item?.name?.length > 20 ? (
-                              <p className={styles.itemName}>{item?.name?.slice(0, 8)}...</p>
-                            ) : (
-                              <p className={styles.itemName}>{item?.name}</p>
-                            )}
-                          </Link>
-                          <div className={styles.favoriteIcons}>
-                            <Button colorScheme="green" size="xs" onClick={() => handleAddToCart(item)}>
-                              <BsFillCartFill className={styles.BsFillCart} />
-                            </Button>
-                            <Button colorScheme="blue" size="xs" onClick={() => handleAddToCart(item)}>
-                              <BsFillInfoSquareFill className={styles.BsFillInfoSquareFill} />
-                            </Button>
-                            <Button colorScheme="red" size="xs" onClick={() => handleRemoveFromFavorites(item.id)}>
-                              <BsTrashFill className={styles.BsTrashFill} />
-                            </Button>
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className={styles.favoritesCards}>
-                    <div className={styles.favoriteItemContainer} key={item.id}>
-                      <Link to={`/searchedCard/${item?.name}`}>
-                        <img src={item?.card_images[0]?.image_url} alt={item?.name} className={styles.itemImage} />
-                      </Link>
+      <section className={styles.searchedCardSection}>
+        <main className={styles.cardSearchMain}>
+          <CardContainer>
+            {favorite.favoriteItems.map((card) => (
+              <Card alt={card?.name} card_images={card?.card_images[0]?.image_url} key={card?.id}>
+                <Link to={`/searchedCard/${card?.name}`}>
+                  {card?.name?.length > 20 ? (
+                    <p className={styles.cardName}>{card?.name?.slice(0, 15)}...</p>
+                  ) : (
+                    <p className={styles.cardName}>{card?.name}</p>
+                  )}
+                </Link>
+                <div className={styles.userButtons}>
+                  <Button colorScheme="green" size="xs" onClick={() => handleAddToCart(card)}>
+                    <BsFillCartFill className={styles.BsFillCart} />
+                  </Button>
 
-                      <div className={styles.itemInfo}>
-                        <span className={styles.itemNameIcon}>
-                          <Link to={`/searchedCard/${item?.name}`}>
-                            {item?.name.length >= 20 ? (
-                              <p className={styles.itemName}>{item?.name?.slice(0, 12)}...</p>
-                            ) : (
-                              <p className={styles.itemName}>{item?.name}</p>
-                            )}
-                          </Link>
-                          <div className={styles.favoriteIcons}>
-                            <Button colorScheme="green" size="xs" onClick={() => handleAddToCart(item)}>
-                              <BsFillCartFill className={styles.BsFillCart} />
-                            </Button>
+                  <Button colorScheme="blue" size="xs">
+                    <Link to={`/searchedCard/${card?.name}`}>
+                      <BsFillInfoSquareFill className={styles.BsFillInfoSquareFill} />
+                    </Link>
+                  </Button>
 
-                            <Button colorScheme="blue" size="xs">
-                              <Link to={`/searchedCard/${item?.name}`}>
-                                <BsFillInfoSquareFill className={styles.BsFillInfoSquareFill} />
-                              </Link>
-                            </Button>
-
-                            <Button colorScheme="red" size="xs" onClick={() => handleRemoveFromFavorites(item.id)}>
-                              <BsTrashFill className={styles.BsTrashFill} />
-                            </Button>
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </>
+                  <Button colorScheme="red" size="xs" onClick={() => handleRemoveFromFavorites(card?.id)}>
+                    <BsTrashFill className={styles.BsTrashFill} />
+                  </Button>
+                </div>
+              </Card>
             ))}
-          </div>
-        </section>
-      </main>
+          </CardContainer>
+        </main>
+      </section>
     );
 };

@@ -1,7 +1,23 @@
+.searchedCardSection {
+  @media (min-width: 768px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+  }
+}
+
 .cardSearchMain {
   width: 100%;
   position: relative;
   top: 11vh;
+
+  @media (min-width: 768px) {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    top: unset;
+  }
 }
 
 .box {
@@ -12,15 +28,12 @@
   align-items: center;
 }
 
-.cardsContainer {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 16px;
-  justify-content: center;
+.cardName {
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.cardsContainer > div:nth-child(odd) {
-  background-color: #dcdcdc;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+.userButtons {
+  display: flex;
+  justify-content: space-between;
 }

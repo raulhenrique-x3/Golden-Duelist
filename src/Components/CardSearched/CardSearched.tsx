@@ -54,8 +54,8 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
     dispatch(addToFavorite(card));
   };
 
-  async function handleAddComment() {
-    await dispatch(addComment(userMakeComment));
+  function handleAddComment() {
+    dispatch(addComment(userMakeComment));
     setUserMakeComment("");
   }
 
@@ -87,8 +87,9 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
                 <h2 className={styles.productName}>{card?.name}</h2>
               </Link>
               <p>{card?.desc}</p>
-              <p className={styles.productName}>Card Price: $ {card?.card_prices[0]?.cardmarket_price}</p>
+
               <div className={styles.userButtons}>
+                <p className={styles.productName}>Card Price: $ {card?.card_prices[0]?.cardmarket_price}</p>
                 <Button colorScheme="green" size="sm" onClick={() => handleAddToCart(card)}>
                   <BsFillCartFill className={styles.BsFillCart} />
                 </Button>
@@ -114,7 +115,7 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
                     <Th>Set rarity</Th>
                   </Tr>
                 </Thead>
-                {card?.card_sets?.map((set: ICardProducts, key) => (
+                {card?.card_sets?.slice(0, 10).map((set: ICardProducts, key: any) => (
                   <Tbody key={key}>
                     <Tr>
                       <Td>{set?.set_name}</Td>
@@ -123,6 +124,9 @@ export const CardSearched: React.FC<ICardProducts> = ({ card }) => {
                     </Tr>
                   </Tbody>
                 ))}
+                <Button colorScheme="blue" size="sm">
+                  Carregar mais coleções
+                </Button>
               </Table>
             </TableContainer>
           </div>

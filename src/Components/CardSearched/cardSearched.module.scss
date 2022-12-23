@@ -37,6 +37,10 @@ $border-radius-main: 5px;
   width: 100%;
   flex-direction: column;
   gap: 16px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .productImage {
@@ -64,6 +68,17 @@ $border-radius-main: 5px;
 
 .userButtons {
   @include d-flex-g-8;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.cardSet {
+  display: flex;
+  justify-content: center;
 }
 
 .cardSet,

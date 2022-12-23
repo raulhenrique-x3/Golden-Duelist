@@ -41,7 +41,11 @@ export const CardsSearcheds: React.FC<ICardProducts> = ({ card }) => {
 
         <figcaption className={styles.cardsSearchedsfigCaption}>
           <Link to={`/searchedCard/${card?.name}`}>
-            <h2 className={styles.cardsSearchedsName}>{card?.name}</h2>
+            {card?.name.length > 20 ? (
+              <h2 className={styles.cardsSearchedsName}>{card?.name?.slice(0, 20)}...</h2>
+            ) : (
+              <h2 className={styles.cardsSearchedsName}>{card?.name}</h2>
+            )}
           </Link>
           <p className={styles.cardsSearchedsDesc}>{card?.desc}</p>
           <p className={styles.cardsSearchedsPrice}>$ {card?.card_prices[0]?.cardmarket_price}</p>

@@ -94,9 +94,23 @@
   width: 150px;
   border-radius: 3px;
   object-fit: cover;
+
+  @media (min-width: 768px) {
+    width: 250px;
+  }
 }
 
 .productName {
   font-weight: 600;
   word-spacing: -2.5px;
+
+  @media (min-width: 768px) {
+    font-size: clamp(16px, 1.5vw, 18px);
+  }
+}
+
+.productPrice {
+  @media (min-width: 768px) {
+    font-size: clamp(11px, 1.5vw, 14px);
+  }
 }
