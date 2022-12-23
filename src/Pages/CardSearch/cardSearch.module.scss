@@ -35,5 +35,8 @@
 
 .userButtons {
   display: flex;
-  justify-content: space-between;
+  gap: 12px;
+  @media (min-width: 768px) {
+    justify-content: space-between;
+  }
 }
